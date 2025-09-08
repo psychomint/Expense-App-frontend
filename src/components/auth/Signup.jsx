@@ -1,9 +1,24 @@
 import React from 'react'
+import axios from "axios";
 
 const Signup = () => {
-    const onSubmitHandle = (e) => {
-        e.preventDefault();
-        console.log("Form Submitted",e.target.userName.value);
+    const onSubmitHandle = async (e) => {
+        try{
+            e.preventDefault();
+            const signupDeatails = {
+                name:e.target.userName.value,
+                email:e.target.email.value,
+                password:e.target.password.value
+            }
+            //console.log(signupDeatails);
+            const response = await axios.post("http://localhost:3000/user/signup",
+                signupDeatails
+            )
+            console.log(response);
+        }
+        catch(err){
+            console.log("Error :", err);
+        }
     }
   return (
     <div className='h-screen border-2 border-red-500 flex justify-center items-center bg-gray-200'>

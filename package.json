@@ -12,9 +12,13 @@
   "description": "",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.13",
+    "axios": "^1.11.0",
     "parcel": "^2.15.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3"
   }
 }
