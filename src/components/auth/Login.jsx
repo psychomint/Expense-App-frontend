@@ -1,18 +1,16 @@
-import React from 'react'
 import axios from "axios";
 
-const Signup = () => {
+
+const Login = () => {
     const handlSubmitBtn = async (e) => {
         try{
             e.preventDefault();
-            const signupDeatails = {
-                name:e.target.userName.value,
+            const loginDeatails = {
                 email:e.target.email.value,
                 password:e.target.password.value
             }
-            //console.log(signupDeatails);
-            const response = await axios.post("http://localhost:3000/user/signup",
-                signupDeatails
+            const response = await axios.post("http://localhost:3000/user/login",
+                loginDeatails
             )
             console.log(response);
         }
@@ -25,10 +23,6 @@ const Signup = () => {
         <form onSubmit={handlSubmitBtn}>
             <div className='flex flex-col gap-4 p-5 rounded-2xl shadow-2xl bg-cyan-200'>
                 <div className='flex gap-1'>
-                    <label className='font-medium tracking-wide' htmlFor="name">Name: </label>
-                    <input className='border-2 border-amber-300 rounded-md basis-full' type="text" id="name" name="userName" required/>
-                </div>
-                <div className='flex gap-1'>
                     <label className='font-medium tracking-wide'  htmlFor="email">Email: </label>
                     <input className='border-2 border-amber-300 rounded-md basis-full' type="email" id="email" name="userEmail" required/>
                 </div>
@@ -37,7 +31,7 @@ const Signup = () => {
                     <input className='border-2 border-amber-300 rounded-md basis-full' type="password" id="password" name="userPassword" required/>
                 </div>
                 <div className='bg-black text-center rounded-full border-2 border-red-300'>
-                    <button className='p-3 font-medium tracking-wide text-white cursor-pointer' type='submit'>Signup</button>
+                    <button className='p-3 font-medium tracking-wide text-white cursor-pointer' type='submit'>Login</button>
                 </div>
             </div>
         </form>
@@ -45,4 +39,4 @@ const Signup = () => {
   )
 }
 
-export default Signup;
+export default Login

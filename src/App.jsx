@@ -1,17 +1,20 @@
+import Authpage from "./components/auth/Authpage";
+import Login from "./components/auth/Login";
 import Signup from "./components/auth/signup"
+import { BrowserRouter,Routes, Route } from "react-router";
 
 export default function App () {
     return(
         <>
-         <div className="h-full">
-            <Signup/>
-            {/* <div className="h-50 w-1/2 border-2 border-red-600">
-
-            </div>
-            <div className="h-60 w-1/4 border-2 border-green-600">
-
-            </div> */}
-        </div>
-    </>
+        <BrowserRouter>
+            <Routes>
+                 <Route path="user" element={<Authpage/>}>
+                    <Route index element={<Login/>}/>
+                    <Route path="signup" element={<Signup/>}/>
+                    <Route path="login" element={<Login/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+        </>
     )
 }
