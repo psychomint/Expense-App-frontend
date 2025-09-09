@@ -1,15 +1,39 @@
+import axios from "axios";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 
 const AddExpense = () => {
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        const expenseInfo = {
-            expenseAmount:e.target.expAmnt.value,
-            expenseDescription:e.target.expDesc.value,
-            expenseCategory:e.target.expCate.value
+    const navigate = useNavigate();
+    const uId = localStorage.getItem("userId");
+    const handleSubmit = async(e) =>{
+        try{
+            e.preventDefault();
+            if(uId === null) return;
+            const expenseInfo = {
+                userId:uId,
+                expenseAmount:e.target.expAmnt.value,
+                expenseDescription:e.target.expDesc.value,
+                expenseCategory:e.target.expCate.value
+            }
+            const response = await axios.post('http://localhost:3000/expense/addExpense',
+                expenseInfo
+            );
+            console.log(response?.data);
+            alert("Expense registered");
+
         }
-        console.log(expenseInfo);
+        catch(err){
+             console.log("Error :", err);
+        }
     }
+
+    useEffect(()=>{
+    if(uId === null){
+        navigate('/user/login');
+        return;
+    }
+    },[uId,navigate]);
   return (
     <div>
         <form onSubmit={handleSubmit}>

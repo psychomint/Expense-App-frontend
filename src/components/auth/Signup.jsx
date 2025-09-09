@@ -14,7 +14,8 @@ const Signup = () => {
             const response = await axios.post("http://localhost:3000/user/signup",
                 signupDeatails
             )
-            console.log(response);
+            console.log(response?.data);
+            alert('User registered');
         }
         catch(err){
             console.log("Error :", err);

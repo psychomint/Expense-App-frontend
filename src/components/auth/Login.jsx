@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 
 const Login = () => {
+    const navigate = useNavigate();
     const handlSubmitBtn = async (e) => {
         try{
             e.preventDefault();
@@ -12,7 +14,11 @@ const Login = () => {
             const response = await axios.post("http://localhost:3000/user/login",
                 loginDeatails
             )
-            console.log(response);
+            localStorage.setItem("userId",response?.data?.id);
+            console.log(response?.data);
+            alert('Login Sucessfully');
+            navigate('/expense');
+            
         }
         catch(err){
             console.log("Error :", err);

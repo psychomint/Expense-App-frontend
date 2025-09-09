@@ -3,6 +3,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/signup"
 import { BrowserRouter,Routes, Route } from "react-router";
 import AddExpense from "./components/expense/AddExpense";
+import ManageExpenses from "./components/expense/ManageExpenses";
 
 export default function App () {
     return(
@@ -17,6 +18,7 @@ export default function App () {
                  <Route path="expense">
                     <Route index element={<AddExpense/>}/>
                     <Route path="addExpense" element={<AddExpense/>}/>
+                    <Route path="ManageExpenses" element={<ManageExpenses/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
