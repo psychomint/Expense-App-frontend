@@ -14,7 +14,7 @@ const Login = () => {
             const response = await axios.post("http://localhost:3000/user/login",
                 loginDeatails
             )
-            localStorage.setItem("userId",response?.data?.id);
+            localStorage.setItem("userId",response?.data);
             console.log(response?.data);
             alert('Login Sucessfully');
             navigate('/expense');
@@ -25,7 +25,7 @@ const Login = () => {
         }
     }
   return (
-    <div className='h-screen border-2 border-red-500 flex justify-center items-center bg-gray-200'>
+    <div className='h-screen  flex justify-center items-center bg-gray-200'>
         <form onSubmit={handlSubmitBtn}>
             <div className='flex flex-col gap-4 p-5 rounded-2xl shadow-2xl bg-cyan-200'>
                 <div className='flex gap-1'>

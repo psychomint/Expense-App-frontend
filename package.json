@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@cashfreepayments/cashfree-js": "^1.0.5",
     "@tailwindcss/postcss": "^4.1.13",
     "axios": "^1.11.0",
     "parcel": "^2.15.4",

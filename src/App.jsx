@@ -4,6 +4,8 @@ import Signup from "./components/auth/signup"
 import { BrowserRouter,Routes, Route } from "react-router";
 import AddExpense from "./components/expense/AddExpense";
 import ManageExpenses from "./components/expense/ManageExpenses";
+//import Checkout from "./components/Chekout";
+import PaymentStatus from "./components/PaymentStatus";
 
 export default function App () {
     return(
@@ -16,7 +18,7 @@ export default function App () {
                     <Route path="login" element={<Login/>}/>
                 </Route>
                  <Route path="expense">
-                    <Route index element={<AddExpense/>}/>
+                    <Route index element={<ManageExpenses/>}/>
                     <Route path="addExpense" element={<AddExpense/>}/>
                     <Route path="ManageExpenses" element={<ManageExpenses/>}/>
                 </Route>
