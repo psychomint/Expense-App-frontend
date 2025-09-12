@@ -1,8 +1,11 @@
 import { Outlet } from "react-router";
 import { load } from "@cashfreepayments/cashfree-js";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Authpage = () => {
+    const [textPre,setTextPre] = useState('Buy Premium Membership');
+    const [isPremium,setIsPremium] = useState(false);
     let cashfree;
     var initializeSDK = async function () {          
         cashfree = await load({
@@ -10,9 +13,15 @@ const Authpage = () => {
         });
     }
     initializeSDK();
+    const userId = localStorage.getItem("userId");
 
     const doPayment = async () => {
-        const response = await axios.post("http://localhost:3000/payment/pay")
+        //const userId = localStorage.getItem("userId");
+        if(userId == null) {
+            alert('Login please');
+            return;
+        }
+        const response = await axios.post(`http://localhost:3000/payment/pay/${userId}`)
         console.log(response?.data?.paymentSessionId);
         let checkoutOptions = {
             paymentSessionId: response?.data?.paymentSessionId,
@@ -20,17 +29,47 @@ const Authpage = () => {
         };
         await cashfree.checkout(checkoutOptions);
     };
+
+    const verifyPremium = async() => {
+        //const userId = localStorage.getItem("userId");
+        if(userId == null) {
+            alert('Login please');
+            return;
+        }
+        const response = await axios.get(`http://localhost:3000/payment/verify-premium/${userId}`);
+        if(response?.data?.isPremium === true){
+            setIsPremium(true);
+            setTextPre('You are a premium user now');
+            return;
+        }
+        return;
+    }
+    useEffect(() => {
+        verifyPremium();
+    },[userId]);
    return(
         <div className="min-h-screen bg-gray-200 p-0">
             <h1 className="text-2xl font-bold m-0 text-center">
                 Authentication Page
             </h1>
             <button
-            className="absolute top-5 right-5 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded cursor-pointer"
-            onClick={doPayment}
+                disabled={isPremium}
+                onClick={isPremium ? undefined : doPayment}
+                className={`
+                    absolute top-5 right-5
+                    bg-gradient-to-r from-blue-500 to-indigo-600
+                    text-white font-semibold
+                    py-3 px-6 rounded-xl
+                    shadow-lg hover:shadow-xl
+                    transition-all duration-300
+                    transform hover:-translate-y-1
+                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                    ${isPremium ? 'cursor-not-allowed hover:from-blue-600 hover:to-indigo-700' : 'hover:from-blue-600 hover:to-indigo-700'}
+                `}
             >
-            Buy Premium Membership
+                {textPre}
             </button>
+
 
             <Outlet />
         </div>

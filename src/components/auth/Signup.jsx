@@ -16,6 +16,7 @@ const Signup = () => {
             )
             console.log(response?.data);
             alert('User registered');
+            
         }
         catch(err){
             console.log("Error :", err);
