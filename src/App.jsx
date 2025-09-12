@@ -4,7 +4,6 @@ import Signup from "./components/auth/signup"
 import { BrowserRouter,Routes, Route } from "react-router";
 import AddExpense from "./components/expense/AddExpense";
 import ManageExpenses from "./components/expense/ManageExpenses";
-//import Checkout from "./components/Chekout";
 import PaymentStatus from "./components/PaymentStatus";
 
 export default function App () {

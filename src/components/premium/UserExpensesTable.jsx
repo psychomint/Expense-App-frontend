@@ -26,7 +26,7 @@ const UserExpensesTable = ({data}) => {
                 </td>
                 <td className="px-6 py-4">{user.email}</td>
                 <td className="px-6 py-4 text-right font-semibold text-blue-600">
-                  ₹ {user.total_count ? user.total_count : 0}
+                  ₹ {user.totalExpense ? user.totalExpense : 0}
                 </td>
               </tr>
             ))}
