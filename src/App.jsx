@@ -8,6 +8,7 @@ import ManageExpenses from "./components/expense/ManageExpenses";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import ForgetChangePassword from "./components/auth/forgetChangePassword";
 import Layout from "./components/Layout";
+import Dashboard from "./components/Dashboard";
 
 export default function App () {
     return(
@@ -23,7 +24,7 @@ export default function App () {
                         <Route path="forget-change-password/:id" element={<ForgetChangePassword/>}/>
                     </Route>
                     <Route path="expense">
-                        <Route index element={<ManageExpenses/>}/>
+                        <Route index element={<Dashboard/>}/>
                         <Route path="addExpense" element={<AddExpense/>}/>
                         <Route path="ManageExpenses" element={<ManageExpenses/>}/>
                     </Route>

@@ -10,6 +10,7 @@ const UserExpensesTable = ({data}) => {
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-600">
           <thead className="bg-blue-600 text-white">
             <tr>
+               <th className="px-6 py-3">Rank</th>
               <th className="px-6 py-3">Name</th>
               <th className="px-6 py-3">Email</th>
               <th className="px-6 py-3 text-right">Total Expenses</th>
@@ -21,6 +22,17 @@ const UserExpensesTable = ({data}) => {
                 key={index}
                 className="border-b hover:bg-gray-100 transition"
               >
+                <td className="px-6 py-4 font-medium text-gray-900">
+                  {index === 0 ? (
+                    <span className="text-3xl">🥇</span>
+                  ) : index === 1 ? (
+                    <span className="text-3xl">🥈</span>
+                  ) : index === 2 ? (
+                    <span className="text-3xl">🥉</span>
+                  ) : (
+                    index + 1
+                  )}
+                </td>
                 <td className="px-6 py-4 font-medium text-gray-900">
                   {user.name}
                 </td>
