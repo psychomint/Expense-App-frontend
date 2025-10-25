@@ -22,7 +22,15 @@ const Layout = () => {
             alert('Login please');
             return;
         }
-        const response = await axios.post(`http://localhost:3000/payment/pay/${userId}`)
+        //console.log(userId);
+        const response = await axios.post(`http://localhost:3000/payment/pay`,
+            {},
+            {
+                headers:{
+                        Authorization: `Bearer ${userId}`
+                    }
+            }
+        );
         console.log(response?.data?.paymentSessionId);
         let checkoutOptions = {
             paymentSessionId: response?.data?.paymentSessionId,
@@ -37,7 +45,13 @@ const Layout = () => {
             alert('Login please');
             return;
         }
-        const response = await axios.get(`http://localhost:3000/payment/verify-premium/${userId}`);
+        const response = await axios.get(`http://localhost:3000/payment/verify-premium`,
+            {
+                headers:{
+                        Authorization: `Bearer ${userId}`,
+                    }
+            }
+        );
         if(response?.data?.isPremium === true){
             setIsPremium(true);
             setTextPre('You are a premium user now');

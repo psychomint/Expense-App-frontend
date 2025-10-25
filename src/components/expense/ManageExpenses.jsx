@@ -19,11 +19,14 @@ const ManageExpenses = () => {
         try{
             const response = await axios.get(`http://localhost:3000/expense/ManageExpenses/${userId}`,{
                 params: {
-                    pageNumber: currentPage,     // ✅ query params
+                    pageNumber: currentPage,     
                     rowsPerPage: rowsPerPage
                 },
+                headers:{
+                    Authorization: `Bearer ${userId}`
+                }
             });
-            console.log("Expenses:", response.data);
+            //console.log("Expenses:", response.data);
             setData(response?.data);
             setTotalPages(response?.data[0]?.totalPages);
         }
@@ -32,16 +35,18 @@ const ManageExpenses = () => {
         }
     }
     useEffect(()=>{
-        if (!userId) {
-            navigate('/user/login');
-            return;
-        }
         expenseList();
-    },[localStorage.getItem("userId"), deleteItem , currentPage,rowsPerPage,navigate]);
+    },[deleteItem , currentPage,rowsPerPage]);
     
     const deleteExpense = async(id) => {
         try{
-            await axios.delete(`http://localhost:3000/expense/deleteExpenses/${id}`);
+            await axios.delete(`http://localhost:3000/expense/deleteExpenses/${id}`,
+                {
+                    headers:{
+                        Authorization: `Bearer ${userId}`
+                    }
+                }
+            );
             setData((prev)=> prev.filter((exp) => exp.id != id));
             const a = deleteItem;
             setDeleteItem(!a);

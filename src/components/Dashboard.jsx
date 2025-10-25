@@ -7,10 +7,28 @@ const Dashboard = () => {
   const [transactions,setTransactions] = useState([]);
 
   const userId = localStorage.getItem("userId");
-  console.log("Dashboard",userId);
+  // console.log("Dashboard",userId);
+  
+  const handleDownload = async() => {
+    const response = await axios.get(`http://localhost:3000/expense/download`,
+      {
+        headers:{
+          Authorization: `Bearer ${userId}`
+        }
+      }
+    );
+    
+  }
   
   const verifyPremium = async () => {
-    const response = await axios.get(`http://localhost:3000/payment/verify-premium/${userId}`);
+    const response = await axios.get(`http://localhost:3000/payment/verify-premium`,
+            {
+                headers:{
+                        Authorization: `Bearer ${userId}`,
+                    }
+            }
+        );
+    console.log("response?.data",response?.data);
     if(response?.data?.isPremium === true){
             setIsPremium(true);
             return;
@@ -18,7 +36,11 @@ const Dashboard = () => {
     return;
   }
   const getInformation = async () => {
-    const response = await axios.get(`http://localhost:3000/expense/ManageExpenses/${userId}`);
+    const response = await axios.get(`http://localhost:3000/expense/ManageExpenses/${userId}`,{
+      headers:{
+        Authorization:`Bearer ${userId}`
+      }
+    });
     //console.log(response?.data.length);
     const data = response?.data || [];
     //console.log(data)
@@ -111,8 +133,9 @@ const Dashboard = () => {
       <div className="flex justify-end mt-4">
         <button
           disabled={!isPremium}
+          onClick={handleDownload}
           className={`px-4 py-2 rounded-md ${
-            isPremium ? "bg-blue-500 text-white hover:bg-blue-600" : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            isPremium ? "bg-blue-500 text-white hover:bg-blue-600 cursor-pointer" : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
           Download
