@@ -86,6 +86,7 @@ const Layout = () => {
       </div>
       {/* Page content */}
       <main style={{ padding: "20px" }}>
+        
         <Outlet /> {/* Nested routes will render here */}
       </main>
     </div>
