@@ -79,7 +79,7 @@ const ManageExpenses = () => {
     }
 
   return (
-    
+<div className="w-full bg-gradient-to-br from-green-300 via-green-200 to-green-300">
     <div className="p-8 max-w-5xl mx-auto relative">
     {/* Header */}
     <div className="flex items-center justify-between mb-8">
@@ -197,7 +197,7 @@ const ManageExpenses = () => {
         {showLeaderboard && <UserExpensesTable data={dataLead} />}
     </div>
     </div>
-
+</div>
 
   )
 }

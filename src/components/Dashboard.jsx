@@ -72,6 +72,7 @@ const Dashboard = () => {
 //   ];
 
   return (
+  <div className="w-full bg-gradient-to-br from-green-300 via-green-200 to-green-300">
     <div className="p-6 max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
@@ -141,7 +142,9 @@ const Dashboard = () => {
           Download
         </button>
       </div>
+    
     </div>
+  </div>
   );
 };
 

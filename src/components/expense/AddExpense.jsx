@@ -46,13 +46,13 @@ const AddExpense = () => {
   // }, [userId, navigate]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-300 via-green-200 to-green-300 dark:bg-gray-900 transition-all duration-500">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8 space-y-6 border border-gray-200"
+        className="w-[90%] max-w-md bg-green-100/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/30 dark:border-gray-700 space-y-6 transition-all duration-500"
       >
-        <h2 className="text-2xl font-bold text-gray-800 text-center">
-          Add Transaction
+        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 tracking-wide">
+          Add Transaction 💸
         </h2>
 
         {/* Toggle Expense / Income */}
@@ -60,10 +60,10 @@ const AddExpense = () => {
           <button
             type="button"
             onClick={() => setType("expense")}
-            className={`px-4 py-2 rounded-full font-medium ${
+            className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
               type === "expense"
-                ? "bg-red-500 text-white"
-                : "bg-gray-100 text-gray-600"
+                ? "bg-red-500 text-white shadow-lg shadow-red-300/40 dark:shadow-red-600/40"
+                : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
             }`}
           >
             Expense
@@ -71,10 +71,10 @@ const AddExpense = () => {
           <button
             type="button"
             onClick={() => setType("income")}
-            className={`px-4 py-2 rounded-full font-medium ${
+            className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
               type === "income"
-                ? "bg-green-500 text-white"
-                : "bg-gray-100 text-gray-600"
+                ? "bg-green-500 text-white shadow-lg shadow-green-300/40 dark:shadow-green-600/40"
+                : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
             }`}
           >
             Income
@@ -82,10 +82,10 @@ const AddExpense = () => {
         </div>
 
         {/* Amount */}
-        <div>
+        <div className="flex flex-col gap-1">
           <label
             htmlFor="amnt"
-            className="block text-sm font-medium text-gray-700"
+            className="text-gray-700 dark:text-gray-300 font-medium"
           >
             Amount
           </label>
@@ -94,16 +94,16 @@ const AddExpense = () => {
             id="amnt"
             name="expAmnt"
             placeholder="Enter amount"
-            className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400"
             required
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:outline-none dark:bg-gray-700 dark:text-white transition-all"
           />
         </div>
 
         {/* Description */}
-        <div>
+        <div className="flex flex-col gap-1">
           <label
             htmlFor="desc"
-            className="block text-sm font-medium text-gray-700"
+            className="text-gray-700 dark:text-gray-300 font-medium"
           >
             Description
           </label>
@@ -112,23 +112,23 @@ const AddExpense = () => {
             id="desc"
             name="expDesc"
             placeholder="e.g. Lunch at cafe"
-            className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400"
             required
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:outline-none dark:bg-gray-700 dark:text-white transition-all"
           />
         </div>
 
         {/* Category */}
-        <div>
+        <div className="flex flex-col gap-1">
           <label
             htmlFor="cate"
-            className="block text-sm font-medium text-gray-700"
+            className="text-gray-700 dark:text-gray-300 font-medium"
           >
             Category
           </label>
           <select
-            name="expCate"
             id="cate"
-            className="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400"
+            name="expCate"
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:outline-none dark:bg-gray-700 dark:text-white transition-all"
           >
             <option value="food">Food</option>
             <option value="petrol">Petrol</option>
@@ -140,14 +140,12 @@ const AddExpense = () => {
         </div>
 
         {/* Submit */}
-        <div>
-          <button
-            type="submit"
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md transition duration-200"
-          >
-            Add {type === "expense" ? "Expense" : "Income"}
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-full shadow-lg hover:shadow-cyan-400/40 transition-all duration-300"
+        >
+          Add {type === "expense" ? "Expense" : "Income"}
+        </button>
       </form>
     </div>
   );
