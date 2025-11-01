@@ -10,13 +10,14 @@ import ForgetChangePassword from "./components/auth/forgetChangePassword";
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
 import RequireAuth from "./components/auth/RequirePath";
+import HomePage from "./components/HomePage";
 
 export default function App () {
     return(
         <>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout />}>
+                <Route path="/" element={<HomePage />}>
                     <Route >
                         <Route path="user" element={<Authpage/>}>
                             <Route index element={<Login/>}/>
