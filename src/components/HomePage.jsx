@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Navbar from "./Navbar";
+import HeroSection from "./HeroSection/HeroSection";
 
 const HomePage = () => {
   return (
@@ -14,7 +15,7 @@ const HomePage = () => {
       {/* Auth Components (Login, Signup, etc. will be rendered here) */}
       {/* <main className="w-full max-w-md bg-white shadow-md rounded-lg p-6"> */}
       <div className="">
-         <Outlet />
+        <HeroSection/>
       </div>
        
       {/* </main> */}

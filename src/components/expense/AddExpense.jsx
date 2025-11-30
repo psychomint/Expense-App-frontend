@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Profile from "../Profile";
 
 const AddExpense = () => {
   const navigate = useNavigate();
@@ -44,9 +45,18 @@ const AddExpense = () => {
   //     return;
   //   }
   // }, [userId, navigate]);
-
+    const dummyUser = {
+        name: "John Doe",
+        email: "john@example.com",
+        totalExpense: 2499.75,
+        isPremium: true,
+        created_at: "2024-10-12T14:48:00.000Z",
+    };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-300 via-green-200 to-green-300 dark:bg-gray-900 transition-all duration-500">
+          <div>
+        <Profile user={dummyUser} />
+    </div>
       <form
         onSubmit={handleSubmit}
         className="w-[90%] max-w-md bg-green-100/70 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/30 dark:border-gray-700 space-y-6 transition-all duration-500"
